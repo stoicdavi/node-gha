@@ -9,6 +9,9 @@ on:
 jobs:
     ci:
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [18.X, 20.X]
 
         steps:
             - name: Checkout code
@@ -17,7 +20,7 @@ jobs:
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: '18'
+                  node-version: ${{ matrix.node-version }}
                   cache: 'npm'
 
             - name: Install dependencies
